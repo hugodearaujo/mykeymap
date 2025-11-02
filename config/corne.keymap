@@ -133,7 +133,7 @@
             bindings = <
 &longpress F1 ESCAPE  &longpress F2 NUMBER_1       &longpress F3 NUMBER_2       &longpress F4 NUMBER_3       &longpress F5 NUMBER_4       &longpress F6 N5               &longpress F7 NUMBER_6              &longpress F8 N7  &longpress F9 N8  &longpress F10 N9  &longpress F11 N0  &kp BACKSPACE
 &kp TAB               &prevent_bluetooth BT_SEL 0  &prevent_bluetooth BT_SEL 1  &prevent_bluetooth BT_SEL 2  &prevent_bluetooth BT_SEL 3  &prevent_bluetooth BT_SEL 4    &longpress LG(C_MUTE) C_PLAY_PAUSE  &kp K_MUTE        &kp C_VOL_DN      &kp C_VOL_UP       &kp UP_ARROW       &kp ENTER
-&kp LSHFT             &none                        &trans                       &trans                       &trans                       &trans                         &prevent_printscreen PRINTSCREEN    &kp HOME          &kp END           &kp LEFT_ARROW     &kp DOWN_ARROW     &kp RIGHT
+&kp LSHFT             &trans                       &trans                       &trans                       &trans                       &trans                         &prevent_printscreen PRINTSCREEN    &kp HOME          &kp END           &kp LEFT_ARROW     &kp DOWN_ARROW     &kp RIGHT
                                                                                 &kp LEFT_ALT                 &kp LEFT_GUI                 &kp SPACE                      &kp SPACE                           &kp LEFT_CONTROL  &kp DEL
             >;
         };
