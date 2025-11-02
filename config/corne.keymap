@@ -7,13 +7,106 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/pointing.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        GoToWindows {
+            bindings = <&Switch_Linux_Win 0 0>;
+            key-positions = <38 39>;
+        };
+
+        menos_i_o {
+            bindings = <&kp MINUS>;
+            key-positions = <8 9>;
+        };
+
+        igual_O_P {
+            bindings = <&kp EQUAL>;
+            key-positions = <9 10>;
+        };
+    };
+
+    behaviors {
+        longpress: longpress {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LONGPRESS";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <350>;
+            flavor = "tap-preferred";
+        };
+
+        dot_doubledotDP: dot_doubledotDP {
+            compatible = "zmk,behavior-tap-dance";
+            label = "DOT_DOUBLEDOTDP";
+            #binding-cells = <0>;
+            bindings = <&kp DOT>, <&kp COLON>;
+        };
+
+        comma_dotcommaDP: comma_dotcommaDP {
+            compatible = "zmk,behavior-tap-dance";
+            label = "COMMA_DOTCOMMADP";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp SEMICOLON>;
+        };
+
+        slash_backslashDP: slash_backslashDP {
+            compatible = "zmk,behavior-tap-dance";
+            label = "SLASH_BACKSLASHDP";
+            #binding-cells = <0>;
+            bindings = <&kp SLASH>, <&kp BACKSLASH>;
+        };
+
+        bracket_closedDP: bracket_closedDP {
+            compatible = "zmk,behavior-tap-dance";
+            label = "BRACKET_CLOSEDDP";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACKET>, <&kp RIGHT_BRACKET>;
+        };
+
+        cedilha_tioDP: cedilha_tioDP {
+            compatible = "zmk,behavior-tap-dance";
+            label = "CEDILHA_TIODP";
+            #binding-cells = <0>;
+            bindings = <&kp SINGLE_QUOTE>, <&kp GRAVE>;
+        };
+
+        prevent_bluetooth: prevent_bluetooth {
+            compatible = "zmk,behavior-hold-tap";
+            label = "PREVENT_BLUETOOTH";
+            bindings = <&bt>;
+            #binding-cells = <2>;
+            tapping-term-ms = <500>;
+            flavor = "tap-preferred";
+        };
+
+        Switch_Linux_Win: Switch_Linux_Win {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SWITCH_LINUX_WIN";
+            bindings = <&to>, <&to>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+        };
+
+        prevent_printscreen: prevent_printscreen {
+            compatible = "zmk,behavior-hold-tap";
+            label = "PREVENT_PRINTSCREEN";
+            bindings = <&kp>;
+            #binding-cells = <2>;
+            tapping-term-ms = <1000>;
+            flavor = "tap-preferred";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        BaseLayer {
+        Linux {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
             // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
@@ -22,42 +115,46 @@
 
             display-name = "Base";
             bindings = <
-&kp ESCAPE  &kp Q  &kp W  &kp E         &kp R         &kp T          &kp Y        &kp U  &kp I          &kp O    &kp P      &kp BSPC
-&kp TAB     &kp A  &kp S  &kp D         &kp F         &kp G          &kp H        &kp J  &kp K          &kp L    &kp SEMI   &kp ENTER
-&kp LSHFT   &kp Z  &kp X  &kp C         &kp V         &kp B          &kp N        &kp M  &kp COMMA      &kp DOT  &kp SLASH  &kp SQT
-                          &kp LEFT_GUI  &kp LEFT_ALT  &lt 2 SPACE    &lt 1 SPACE  &mo 1  &kp RIGHT_WIN
+&kp ESCAPE  &longpress LG(W) Q      &longpress LG(LS(LA(W))) W  &longpress LG(LS(E)) E  &kp R                   &longpress LG(LS(LC(SPACE))) T    &longpress LG(LS(Y)) Y  &kp U             &kp I              &longpress LS(LG(O)) O      &longpress LG(LS(P)) P  &kp BSPC
+&kp TAB     &longpress LS(LG(T)) A  &longpress LG(LS(M)) S      &longpress LG(LS(D)) D  &longpress LG(LS(F)) F  &kp G                             &kp H                   &kp J             &kp K              &longpress L LG(LA(SPACE))  &cedilha_tioDP          &kp ENTER
+&kp LSHFT   &longpress LG(Z) Z      &longpress LG(LS(X)) X      &longpress LG(LS(A)) C  &longpress LG(LS(N)) V  &longpress LS(LG(B)) B            &longpress LS(LG(K)) N  &kp M             &comma_dotcommaDP  &dot_doubledotDP            &bracket_closedDP       &slash_backslashDP
+                                                                &kp LEFT_ALT            &kp LEFT_GUI            &kp SPACE                         &lt 1 SPACE             &kp LEFT_CONTROL  &kp SINGLE_QUOTE
             >;
         };
 
-        TopLayer {
+        linux {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
             // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
             // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
-            display-name = "Numbers";
+            display-name = "Topo";
             bindings = <
-&kp ESCAPE  &mt LG(NUMBER_1) NUMBER_1  &kp N2        &kp N3            &kp N4            &kp N5       &kp N6          &kp N7        &kp N8     &kp N9     &kp N0             &kp BACKSPACE
-&trans      &trans                     &trans        &trans            &trans            &to 2        &trans          &kp UP_ARROW  &kp GRAVE  &kp MINUS  &kp RIGHT_BRACKET  &kp ENTER
-&kp LSHFT   &kp K_MUTE                 &kp C_VOL_DN  &kp C_VOL_UP      &kp K_PLAY_PAUSE  &trans       &kp LEFT_ARROW  &kp DOWN      &kp RIGHT  &kp EQUAL  &kp BACKSLASH      &kp LEFT_BRACKET
-                                                     &kp LEFT_CONTROL  &kp LEFT_ALT      &kp SPACE    &kp SPACE       &trans        &kp RWIN
+&longpress F1 ESCAPE  &longpress F2 NUMBER_1       &longpress F3 NUMBER_2       &longpress F4 NUMBER_3       &longpress F5 NUMBER_4       &longpress F6 N5               &longpress F7 NUMBER_6              &longpress F8 N7  &longpress F9 N8  &longpress F10 N9  &longpress F11 N0  &kp BACKSPACE
+&kp TAB               &prevent_bluetooth BT_SEL 0  &prevent_bluetooth BT_SEL 1  &prevent_bluetooth BT_SEL 2  &prevent_bluetooth BT_SEL 3  &prevent_bluetooth BT_SEL 4    &longpress LG(C_MUTE) C_PLAY_PAUSE  &kp K_MUTE        &kp C_VOL_DN      &kp C_VOL_UP       &kp UP_ARROW       &kp ENTER
+&kp LSHFT             &trans                       &trans                       &trans                       &trans                       &trans                         &prevent_printscreen PRINTSCREEN    &kp HOME          &kp END           &kp LEFT_ARROW     &kp DOWN_ARROW     &kp RIGHT
+                                                                                &kp LEFT_ALT                 &kp LEFT_GUI                 &kp SPACE                      &kp SPACE                           &kp LEFT_CONTROL  &kp DEL
             >;
         };
 
-        BottomLayer {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
-            display-name = "Functions";
+        Windows {
+            display-name = "Base";
             bindings = <
-&kp F1     &kp F2        &kp F3        &kp F4            &kp F5        &kp F6          &kp F7          &kp F8          &kp F9           &kp F10  &kp F11  &kp DELETE
-&trans     &trans        &trans        &trans            &trans        &trans          &mkp MB1        &mmv MOVE_UP    &mkp MB2         &trans   &trans   &trans
-&kp LSHFT  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2      &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans   &trans   &trans
-                                       &kp LEFT_CONTROL  &kp LEFT_ALT  &kp SPACE       &kp SPACE       &trans          &kp RALT
+&kp ESCAPE  &longpress LG(W) Q      &longpress LG(LS(LA(W))) W  &longpress LG(LS(E)) E  &kp R                   &longpress LG(LS(LC(SPACE))) T    &longpress LG(LS(Y)) Y  &kp U             &kp I              &longpress LS(LG(O)) O      &longpress LG(LS(P)) P  &kp BSPC
+&kp TAB     &longpress LS(LG(T)) A  &longpress LG(LS(M)) S      &longpress LG(LS(D)) D  &longpress LG(LS(F)) F  &kp G                             &kp H                   &kp J             &kp K              &longpress L LG(LA(SPACE))  &cedilha_tioDP          &kp ENTER
+&kp LSHFT   &longpress LG(Z) Z      &longpress LG(LS(X)) X      &longpress LG(LS(A)) C  &longpress LG(LS(N)) V  &longpress LS(LG(B)) B            &longpress LS(LG(K)) N  &kp M             &comma_dotcommaDP  &dot_doubledotDP            &bracket_closedDP       &slash_backslashDP
+                                                                &kp LEFT_ALT            &kp LEFT_GUI            &kp SPACE                         &lt 3 SPACE             &kp LEFT_CONTROL  &kp SINGLE_QUOTE
+            >;
+        };
+
+        windows {
+            display-name = "Topo";
+            bindings = <
+&longpress F1 ESCAPE  &longpress F2 NUMBER_1         &longpress F3 NUMBER_2         &longpress F4 NUMBER_3         &longpress F5 NUMBER_4         &longpress F6 N5                 &longpress F7 NUMBER_6              &longpress F8 N7  &longpress F9 N8  &longpress F10 N9  &longpress F11 N0  &kp BACKSPACE
+&kp TAB               &prevent_bluetooth BT_SEL 0 0  &prevent_bluetooth BT_SEL 0 1  &prevent_bluetooth BT_SEL 0 2  &prevent_bluetooth BT_SEL 0 3  &prevent_bluetooth BT_SEL 0 4    &longpress LG(C_MUTE) C_PLAY_PAUSE  &kp K_MUTE        &kp C_VOL_DN      &kp C_VOL_UP       &kp UP_ARROW       &kp ENTER
+&kp LSHFT             &trans                         &trans                         &trans                         &trans                         &trans                           &trans                              &trans            &trans            &kp LEFT_ARROW     &kp DOWN_ARROW     &kp RIGHT
+                                                                                    &kp LEFT_ALT                   &kp LEFT_GUI                   &kp SPACE                        &kp SPACE                           &kp LEFT_CONTROL  &trans
             >;
         };
     };
