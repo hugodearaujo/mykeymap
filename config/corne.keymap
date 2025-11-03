@@ -128,25 +128,5 @@
                                                                       &kp LEFT_ALT            &kp LEFT_GUI            &kp SPACE           &kp SPACE                           &kp LEFT_CONTROL  &kp DEL
             >;
         };
-
-        Windows {
-            display-name = "Base";
-            bindings = <
-&kp ESCAPE  &longpress LG(W) Q      &longpress LG(LS(LA(W))) W  &longpress LG(LS(E)) E  &kp R                   &longpress LG(LS(LC(SPACE))) T    &longpress LG(LS(Y)) Y  &kp U             &kp I              &longpress LS(LG(O)) O      &longpress LG(LS(P)) P  &kp BSPC
-&kp TAB     &longpress LS(LG(T)) A  &longpress LG(LS(M)) S      &longpress LG(LS(D)) D  &longpress LG(LS(F)) F  &kp G                             &kp H                   &kp J             &kp K              &longpress L LG(LA(SPACE))  &cedilha_tioDP          &kp ENTER
-&kp LSHFT   &longpress LG(Z) Z      &longpress LG(LS(X)) X      &longpress LG(LS(A)) C  &longpress LG(LS(N)) V  &longpress LS(LG(B)) B            &longpress LS(LG(K)) N  &kp M             &comma_dotcommaDP  &dot_doubledotDP            &bracket_closedDP       &slash_backslashDP
-                                                                &kp LEFT_ALT            &kp LEFT_GUI            &kp SPACE                         &lt 3 SPACE             &kp LEFT_CONTROL  &kp SINGLE_QUOTE
-            >;
-        };
-
-        windows {
-            display-name = "topoo";
-            bindings = <
-&longpress F1 ESCAPE  &longpress F2 NUMBER_1  &longpress F3 NUMBER_2  &longpress F4 NUMBER_3  &longpress F5 NUMBER_4  &longpress F6 N5    &longpress F7 NUMBER_6              &longpress F8 N7  &longpress F9 N8  &longpress F10 N9  &longpress F11 N0  &kp BACKSPACE
-&kp TAB               &none                   &none                   &none                   &none                   &none               &longpress LG(C_MUTE) C_PLAY_PAUSE  &kp K_MUTE        &kp C_VOL_DN      &kp C_VOL_UP       &kp UP_ARROW       &kp ENTER
-&kp LSHFT             &trans                  &trans                  &trans                  &trans                  &trans              &trans                              &trans            &trans            &kp LEFT_ARROW     &kp DOWN_ARROW     &kp RIGHT
-                                                                      &kp LEFT_ALT            &kp LEFT_GUI            &kp SPACE           &kp SPACE                           &kp LEFT_CONTROL  &trans
-            >;
-        };
     };
 };
