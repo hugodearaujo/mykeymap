@@ -43,35 +43,35 @@
             compatible = "zmk,behavior-tap-dance";
             label = "DOT_DOUBLEDOTDP";
             #binding-cells = <0>;
-            bindings = <&kp DOT>, <&kp COLON>;
+            bindings = <&kp DOT>, <&kp LS(SLASH)>;
         };
 
         comma_dotcommaDP: comma_dotcommaDP {
             compatible = "zmk,behavior-tap-dance";
             label = "COMMA_DOTCOMMADP";
             #binding-cells = <0>;
-            bindings = <&kp COMMA>, <&kp SEMICOLON>;
+            bindings = <&kp COMMA>, <&kp SLASH>;
         };
 
         slash_backslashDP: slash_backslashDP {
             compatible = "zmk,behavior-tap-dance";
             label = "SLASH_BACKSLASHDP";
             #binding-cells = <0>;
-            bindings = <&kp SLASH>, <&kp BACKSLASH>;
+            bindings = <&kp RA(Q)>, <&kp RA(M)>, <&kp NON_US_BACKSLASH>;
         };
 
         bracket_closedDP: bracket_closedDP {
             compatible = "zmk,behavior-tap-dance";
             label = "BRACKET_CLOSEDDP";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_BRACKET>, <&kp RIGHT_BRACKET>;
+            bindings = <&kp RIGHT_BRACKET>, <&kp BACKSLASH>;
         };
 
         cedilha_tioDP: cedilha_tioDP {
             compatible = "zmk,behavior-tap-dance";
             label = "CEDILHA_TIODP";
             #binding-cells = <0>;
-            bindings = <&kp SINGLE_QUOTE>, <&kp GRAVE>;
+            bindings = <&kp SINGLE_QUOTE>, <&kp SEMI>;
         };
 
         Switch_Linux_Win: Switch_Linux_Win {
@@ -82,6 +82,13 @@
             #binding-cells = <2>;
             tapping-term-ms = <3000>;
             flavor = "tap-preferred";
+        };
+
+        quote_acentoagudoDP: quote_acentoagudoDP {
+            compatible = "zmk,behavior-tap-dance";
+            label = "QUOTE_ACENTOAGUDODP";
+            #binding-cells = <0>;
+            bindings = <&kp GRAVE>, <&kp LEFT_BRACKET>;
         };
     };
 
@@ -97,10 +104,10 @@
 
             display-name = "Base";
             bindings = <
-&kp ESCAPE  &longpress LG(W) Q      &longpress LG(LS(LA(W))) W  &longpress LG(LS(E)) E  &kp R                   &longpress LG(LS(LC(SPACE))) T    &longpress LG(LS(Y)) Y  &kp U             &kp I              &longpress LS(LG(O)) O      &longpress LG(LS(P)) P  &kp BSPC
-&kp TAB     &longpress LS(LG(T)) A  &longpress LG(LS(M)) S      &longpress LG(LS(D)) D  &longpress LG(LS(F)) F  &kp G                             &kp H                   &kp J             &kp K              &longpress L LG(LA(SPACE))  &cedilha_tioDP          &kp ENTER
-&kp LSHFT   &longpress LG(Z) Z      &longpress LG(LS(X)) X      &longpress LG(LS(A)) C  &longpress LG(LS(N)) V  &longpress LS(LG(B)) B            &longpress LS(LG(K)) N  &kp M             &comma_dotcommaDP  &dot_doubledotDP            &bracket_closedDP       &slash_backslashDP
-                                                                &kp LEFT_ALT            &kp LEFT_GUI            &kp SPACE                         &lt 1 SPACE             &kp LEFT_CONTROL  &kp SINGLE_QUOTE
+&kp ESCAPE  &longpress LG(W) Q      &longpress LG(LS(LA(W))) W  &longpress LG(LS(E)) E  &kp R                   &longpress LG(LS(LC(SPACE))) T    &longpress LG(LS(Y)) Y  &kp U             &kp I                 &longpress LS(LG(O)) O      &longpress LG(LS(P)) P  &kp BSPC
+&kp TAB     &longpress LS(LG(T)) A  &longpress LG(LS(M)) S      &longpress LG(LS(D)) D  &longpress LG(LS(F)) F  &kp G                             &kp H                   &kp J             &kp K                 &longpress L LG(LA(SPACE))  &cedilha_tioDP          &kp ENTER
+&kp LSHFT   &longpress LG(Z) Z      &longpress LG(LS(X)) X      &longpress LG(LS(A)) C  &longpress LG(LS(N)) V  &longpress LS(LG(B)) B            &longpress LS(LG(K)) N  &kp M             &comma_dotcommaDP     &dot_doubledotDP            &bracket_closedDP       &slash_backslashDP
+                                                                &kp LEFT_ALT            &kp LEFT_GUI            &kp SPACE                         &lt 1 SPACE             &kp LEFT_CONTROL  &quote_acentoagudoDP
             >;
         };
 
